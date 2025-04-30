@@ -17,8 +17,8 @@ Cela fait de JavaScript un langage typé dynamiquement, ce qui signifie que les 
 
 - Nombre (number)
 - BigInt
-- Booléen (boolean)
 - Texte (string)
+- Booléen (boolean)
 
 ### Le type Number (nombre)
 
@@ -117,3 +117,41 @@ const big = 1234567890123456789012345678901234567890n;
 ✅ Grâce à BigInt, tu peux faire des calculs sur des nombres énormes, sans perte de précision.
 
 👉 Ce type est surtout utile pour la cryptographie, les calculs scientifiques ou les horloges très précises.
+
+### Le type String (texte)
+
+Une chaîne de caractères en JavaScript doit être entre guillemets.
+
+```js
+let str = "Hello";
+let str2 = 'Single quotes are ok too';
+let phrase = `can embed another ${str}`;
+```
+
+En JavaScript, il existe 3 types de guillemets.
+
+- Double quotes: "Hello".
+- Single quotes: 'Hello'.
+- Backticks: `Hello`.
+
+Les guillemets simples et doubles sont des guillemets “simples”. Il n’y a pratiquement pas de différence entre eux en JavaScript.
+
+Les backticks sont des guillemets “à fonctionnalité étendue”. Ils nous permettent d’intégrer des variables et des expressions dans une chaîne en les encapsulant dans ${…}, par exemple :
+
+```js
+let name = "John";
+
+// une variable encapsulée
+alert( `Hello, ${name}!` ); // Hello, John!
+
+// une expression encapsulée
+alert( `the result is ${1 + 2}` ); // le résultat est 3
+```
+
+L’expression à l’intérieur de ${…} est évaluée et le résultat devient une partie de la chaîne. On peut y mettre n’importe quoi : une variable comme name ou une expression arithmétique comme 1 + 2 ou quelque chose de plus complexe.
+
+Veuillez noter que cela ne peut être fait que dans les backticks. Les autres guillemets ne permettent pas une telle intégration !
+
+```js
+alert( "the result is ${1 + 2}" ); // le résultat est ${1 + 2} (les doubles quotes ne font rien)
+```
