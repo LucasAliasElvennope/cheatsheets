@@ -155,3 +155,28 @@ document.getElementById("monBouton").addEventListener("click", function() {
 - `addEventListener("click", function() {...})` : Ajoute un événement click qui exécute une fonction lorsqu'on clique sur le bouton.
 
 - `alert("Hello, vous avez cliqué sur le bouton !")` : Affiche un message à l'utilisateur dans une fenêtre popup.
+
+
+## Une analogie avec la vie réelle
+
+Une **variable** peut être comparée à une **boîte** avec un nom dessus, et cette boîte peut contenir des données.
+
+Par exemple, la variable `message` est comme une boîte étiquetée "message" qui contient "Hello!".
+
+On peut modifier le contenu de cette boîte autant de fois qu'on veut :
+
+```js
+let message = 'Hello!';
+message = 'World!'; // valeur changée
+alert(message); // affiche "World!"
+```
+
+On peut aussi copier la valeur d'une variable dans une autre :
+
+```js
+let hello = 'Hello world!';
+let message = hello; // copie la valeur de hello
+alert(hello);  // Hello world!
+alert(message); // Hello world!
+```
+
