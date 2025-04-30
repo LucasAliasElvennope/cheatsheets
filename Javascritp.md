@@ -256,3 +256,27 @@ const pageLoadTime = 120; // Temps de chargement de la page, mais il reste const
 - Utiliser des constantes avec des majuscules rend le code plus lisible et facilite la maintenance.
 
 - Celles-ci sont plus significatives (par exemple, COLOR_RED est plus compréhensible que #F00).
+
+Le nommage des variables est essentiel en programmation. Des noms clairs et significatifs rendent le code plus lisible et compréhensible, surtout dans des projets à long terme. Lorsque tu reviendras sur ton code plus tard, des noms de variables bien choisis te faciliteront la tâche.
+
+### Règles à suivre :
+
+- Utilise des noms descriptifs et compréhensibles, comme userName ou shoppingCart.
+
+- Évite les abréviations ou noms trop courts (comme a, b, c) à moins que leur signification soit évidente.
+
+- Choisis des noms concis mais informatifs. Par exemple, évite data ou value, sauf si le contexte les rend clairs.
+
+- Sois cohérent avec ton équipe dans le choix des termes. Par exemple, si on parle d'un "utilisateur" dans ton application, nomme les variables en conséquence (comme currentUser ou newUser).
+
+Bien que cela puisse sembler simple, la pratique de créer des noms efficaces peut être difficile.
+
+### Résumé
+
+Nous pouvons déclarer des variables pour stocker des données. Cela peut être fait en utilisant var ou let ou const.
+
+- let – est une déclaration de variable moderne.
+- var – est une déclaration de variable old-school. Normalement, nous ne l’utilisons pas du tout, mais nous couvrirons les différences subtiles par rapport à let dans le chapitre L'ancien "var", juste au cas où vous en auriez besoin.
+- const – est équivalent à let, mais la valeur de la variable ne peut pas être modifiée.
+
+Les variables doivent être nommées d'une manière qui nous permet de comprendre facilement ce qui est à l'intérieur.
