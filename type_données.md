@@ -19,6 +19,10 @@ Cela fait de JavaScript un langage typé dynamiquement, ce qui signifie que les 
 - BigInt
 - Texte (string)
 - Booléen (boolean)
+- Null
+- Undefined
+
+---
 
 ### Le type Number (nombre)
 
@@ -88,6 +92,8 @@ alert(3 * NaN); // NaN
 
 Même si Infinity et NaN ne sont pas des nombres normaux, ils font partie du type number en JavaScript.
 
+---
+
 ### Le type `BigInt`
 
 En JavaScript, le type number ne peut pas représenter correctement des très grands nombres entiers. Il y a une limite :
@@ -117,6 +123,8 @@ const big = 1234567890123456789012345678901234567890n;
 ✅ Grâce à BigInt, tu peux faire des calculs sur des nombres énormes, sans perte de précision.
 
 👉 Ce type est surtout utile pour la cryptographie, les calculs scientifiques ou les horloges très précises.
+
+---
 
 ### Le type `String` (texte)
 
@@ -155,6 +163,7 @@ Veuillez noter que cela ne peut être fait que dans les backticks. Les autres gu
 ```js
 alert( "the result is ${1 + 2}" ); // le résultat est ${1 + 2} (les doubles quotes ne font rien)
 ```
+---
 
 ### Le type `Boolean` (booléen)
 
@@ -187,3 +196,62 @@ console.log(isGreater); // ✅ true
 - Les booléens sont très utilisés dans les conditions, les tests, les formulaires, etc.
 - Tu verras plus tard comment les combiner avec des opérateurs logiques (&&, ||, !)
 
+---
+
+### 🕳️ La valeur spéciale `null`
+
+- null est une valeur spéciale qui signifie :
+👉 "rien", "vide" ou "valeur inconnue"
+
+- Ce n’est pas un objet ou un pointeur comme dans d’autres langages.
+
+### 🧪 Exemple :
+
+```js
+let age = null;
+```
+
+➡️ Ici, ça veut dire :
+
+🧍 "Je connais la variable age, mais je ne connais pas encore sa valeur."
+
+### ✅ À retenir :
+
+- null est un type à part entière, différent des autres types (number, string, etc.).
+- Tu l’utilises quand tu veux dire : "il n’y a rien pour l’instant".
+
+---
+
+### ❓ La valeur spéciale `undefined`
+
+- undefined signifie :
+👉 "aucune valeur n’a été attribuée"
+
+- C’est un type à part entière, tout comme null.
+
+### 🧪 Exemple :
+
+```js
+let age;
+console.log(age); // ❓ undefined
+```
+
+➡️ Ici, on a déclaré la variable age,
+mais on n’a rien mis dedans → donc sa valeur est undefined.
+⚠️ Peut-on écrire undefined soi-même ?
+
+Oui, mais ce n’est pas recommandé :
+
+```js
+let age = 100;
+age = undefined; // possible, mais déconseillé
+```
+
+### 🧠 Mieux vaut utiliser null pour dire que la variable est vide volontairement.
+
+### 🔍 Résumé null vs undefined
+
+| Valeur	| ✨ Signifie	| 🛠️ Quand l’utiliser ? |
+|---|---|---|
+| undefined	| La variable n’a pas encore de valeur	| Par défaut, quand on déclare une variable sans l'initialiser |
+| null	| La variable est vide volontairement	| Quand on veut dire : “il n’y a rien” ou “valeur inconnue” |
