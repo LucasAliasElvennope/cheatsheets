@@ -88,7 +88,7 @@ alert(3 * NaN); // NaN
 
 Même si Infinity et NaN ne sont pas des nombres normaux, ils font partie du type number en JavaScript.
 
-### Le type BigInt
+### Le type `BigInt`
 
 En JavaScript, le type number ne peut pas représenter correctement des très grands nombres entiers. Il y a une limite :
 ➡️ 9007199254740991 (c’est 2⁵³ - 1).
@@ -118,7 +118,7 @@ const big = 1234567890123456789012345678901234567890n;
 
 👉 Ce type est surtout utile pour la cryptographie, les calculs scientifiques ou les horloges très précises.
 
-### Le type String (texte)
+### Le type `String` (texte)
 
 Une chaîne de caractères en JavaScript doit être entre guillemets.
 
@@ -155,3 +155,35 @@ Veuillez noter que cela ne peut être fait que dans les backticks. Les autres gu
 ```js
 alert( "the result is ${1 + 2}" ); // le résultat est ${1 + 2} (les doubles quotes ne font rien)
 ```
+
+### Le type `Boolean` (booléen)
+
+Un boolean sert à représenter une réponse oui ou non ✅❌
+Il n’a que deux valeurs possibles :
+
+- ✅ true → signifie oui / vrai
+- ❌ false → signifie non / faux
+
+Exemple :
+
+```js
+let nameFieldChecked = true;  // ✅ le champ "nom" est coché
+let ageFieldChecked = false;  // ❌ le champ "âge" n'est pas coché
+```
+
+### 🔍 Comparaison logique
+
+Les booléens apparaissent aussi dans les comparaisons :
+
+```js
+let isGreater = 4 > 1;
+console.log(isGreater); // ✅ true
+```
+
+➡️ Ici, 4 > 1 est vrai, donc le résultat est true.
+
+### 🧠 À retenir :
+
+- Les booléens sont très utilisés dans les conditions, les tests, les formulaires, etc.
+- Tu verras plus tard comment les combiner avec des opérateurs logiques (&&, ||, !)
+
