@@ -16,11 +16,12 @@ Cela fait de JavaScript un langage typé dynamiquement, ce qui signifie que les 
 ## Types de données :
 
 - Nombre (number)
-- BigInt
+- BigInt (bigInt)
 - Texte (string)
 - Booléen (boolean)
 - Null
 - Undefined
+- Objet et symbol (object and symbol)
 
 ---
 
@@ -255,3 +256,57 @@ age = undefined; // possible, mais déconseillé
 |---|---|---|
 | undefined	| La variable n’a pas encore de valeur	| Par défaut, quand on déclare une variable sans l'initialiser |
 | null	| La variable est vide volontairement	| Quand on veut dire : “il n’y a rien” ou “valeur inconnue” |
+
+---
+
+### 🏷️ Le type `Object` (objet)
+
+Les objets sont différents des types primitifs (comme les nombres, chaînes de caractères, etc.).
+
+- Les types primitifs ne peuvent contenir qu'une seule valeur (par exemple, un nombre ou une chaîne de caractères).
+
+- Les objets permettent de stocker des collections de données ou des entités plus complexes.
+
+💼 Exemple d'objet :
+
+```js
+let user = {
+  name: "Alice",
+  age: 30,
+  isAdmin: true
+};
+```
+
+🔸 Ici, user est un objet qui contient plusieurs données :
+
+- Le nom de l'utilisateur : "Alice"
+- Son âge : 30
+- Et s’il est administrateur : true
+
+---
+
+### 🔑 Le type `Symbol` (symbole)
+
+Le type Symbol est utilisé pour créer des identificateurs uniques pour les objets.
+
+- Un symbol est comme une étiquette unique qu’on peut utiliser pour nommer des propriétés d’objets.
+
+- Il garantit que deux symboles ne seront jamais égaux, même si leurs noms sont identiques.
+
+🔨 Exemple de symbole :
+
+```js
+const sym = Symbol("description");
+let obj = {
+  [sym]: "value"
+};
+
+console.log(obj[sym]); // "value"
+```
+
+🔸 Ici, sym est un identifiant unique utilisé comme clé pour l’objet obj.
+
+### 🚀 Résumé
+
+- Objects servent à stocker des collections de données ou des entités complexes.
+- Symbols servent à créer des identificateurs uniques pour des propriétés d'objets.
