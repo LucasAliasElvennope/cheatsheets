@@ -82,3 +82,76 @@ Sur plusieurs lignes :
 - La version actuelle est généralement notée ES202x (par exemple ES2024).
 
 - 🔎 Consulte régulièrement tc39.es pour suivre les nouveautés.
+
+---
+
+## 🧮 Les variables en JavaScript
+
+### 📦 Qu'est-ce qu'une variable ?
+Une **variable** est un conteneur dans lequel on peut **stocker des données** (comme du texte, des nombres, etc.).
+
+### 🏷️ Mots-clés pour déclarer une variable
+
+- `let` 👉 pour une variable modifiable (à utiliser dans la majorité des cas)
+- `const` 👉 pour une variable **qu’on ne veut pas modifier**
+- `var` 👉 ancienne façon de déclarer une variable (à éviter aujourd’hui)
+
+#### 🔧 Exemple :
+```js
+let nom = "Alice";
+const age = 30;
+```
+
+#### 💡 Règles de nommage :
+
+- Les noms doivent commencer par une lettre, $ ou _
+
+- Pas d’espaces ni de caractères spéciaux
+
+- Utilise le camelCase : monNomDeVariable
+
+#### 🎯 Utilisation d'une variable avec alert :
+
+```js
+let message = "Hello";
+alert(message);  // Affiche une boîte avec "Hello"
+```
+
+#### 🛠️ Modifier une variable :
+
+```js
+let score = 0;
+score = score + 1; // score devient 1
+```
+
+#### 🚫 const ne peut pas être modifiée :
+
+```js
+const nom = "Alice";
+nom = "Bob"; // ❌ Erreur ! nom est une constante
+```
+## Exemple de message au clic de bouton
+
+Pour afficher un message lorsqu'un utilisateur clique sur un bouton, tu peux utiliser l'exemple suivant :
+
+### HTML
+
+```html
+<button id="monBouton">Cliquez-moi!</button>
+```
+
+### JavaScript
+
+```js
+document.getElementById("monBouton").addEventListener("click", function() {
+  alert("Hello, vous avez cliqué sur le bouton !");
+});
+```
+
+### Explication :
+
+- `getElementById("monBouton")` : Sélectionne le bouton en utilisant son ID.
+
+- `addEventListener("click", function() {...})` : Ajoute un événement click qui exécute une fonction lorsqu'on clique sur le bouton.
+
+- `alert("Hello, vous avez cliqué sur le bouton !")` : Affiche un message à l'utilisateur dans une fenêtre popup.
