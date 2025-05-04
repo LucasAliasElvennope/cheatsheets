@@ -310,3 +310,48 @@ console.log(obj[sym]); // "value"
 
 - Objects servent à stocker des collections de données ou des entités complexes.
 - Symbols servent à créer des identificateurs uniques pour des propriétés d'objets.
+
+---
+
+## L'opérateur typeof
+
+### 🔎 typeof — Connaître le type d'une valeur
+
+L'opérateur typeof sert à connaître le type d'une variable ou d'une valeur 📦.
+Il renvoie une chaîne de caractères 🎯 qui décrit le type.
+💡 Syntaxe :
+
+```js
+typeof valeur;
+```
+
+🧪 Exemples utiles :
+
+| Exemple	| Résultat	| Explication |
+|---|---|---|
+| typeof 42	| "number" | C’est un nombre |
+| typeof "hello"	| "string" | C’est une chaîne de texte |
+| typeof true	| "boolean" | C’est vrai ou faux |
+| typeof undefined	| "undefined" | Non défini, pas de valeur |
+| typeof 10n	| "bigint" | Très grand nombre entier |
+| typeof Symbol("id")	| "symbol" | Identifiant unique |
+| typeof Math	| "object" | Objet spécial pour les maths |
+| typeof null	| "object" | (Erreur historique) |
+| typeof alert	| "function" | C’est une fonction |
+
+
+⚠️ À retenir !
+
+- 🧊 null retourne "object" ❌ → c’est une vieille erreur de JavaScript.
+- 🧮 Math est un objet spécial avec des fonctions mathématiques.
+- 📢 alert est une fonction, donc typeof retourne "function" (même si en réalité, les fonctions sont aussi des objets).
+
+### ✅ Exemple d’utilisation :
+
+```js
+let age = 25;
+
+if (typeof age === "number") {
+  console.log("🎉 C’est un nombre !");
+}
+```
