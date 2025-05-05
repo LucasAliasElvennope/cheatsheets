@@ -12,14 +12,18 @@ Opérateur|Signification|Exemple|Résultat
 
 ## 2. 📝 Concaténation (coller du texte)
 
+```js
 "Hello" + " " + "world!"  // "Hello world!"
+```
 
 💡 Le + fonctionne aussi pour les chaînes de texte (strings) !
 
 ## 3. 🔁 Conversion automatique
 
+```js
 "5" - 2   // 3  ➡️ "5" est converti en nombre
 "5" + 2   // "52" ➡️ concaténation (le + garde la string)
+```
 
 🧠 JavaScript essaie de deviner ce que tu veux faire. Ça peut être piégeux !
 
