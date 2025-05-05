@@ -148,3 +148,84 @@ x++	valeur avant
 6 - '2' | 4 |
 let x = 0; ++x | 1 |
 let x = 0; x++ | 0 (mais x=1) |
+
+## 🔗 Concaténation de chaînes avec +
+
+En JavaScript, l'opérateur + a deux rôles :
+
+- ➕ Addition (nombres)
+
+- 🔗 Concaténation (chaînes)
+
+```js
+"Hello" + "World"       // "HelloWorld"
+"1" + 2                 // "12"
+2 + "1"                 // "21"
+```
+
+### ⚠️ Si l’un des deux est une chaîne, l’autre est converti en chaîne avant la concaténation !
+
+### 🌀 Attention à l'ordre :
+
+```js
+2 + 2 + "1"     // "41" (car 2 + 2 = 4, puis "4" + "1")
+"1" + 2 + 2     // "122" ("1" + "2" = "12", puis "12" + "2")
+```
+
+## 🧮 Précédence des opérateurs (ordre d’exécution)
+
+📐 Les opérateurs ne sont pas tous exécutés dans l’ordre d’écriture !
+
+Certains sont prioritaires (comme dans les maths).
+
+|🔢 Priorité	|🧪 Opérateur	|🎯 Exemple
+---	| ---	| ---
+14	|+ x, - x (unaires)	|-5, +true
+13	|**	|2 ** 3 = 8
+12	|*, /, %	|6 / 2 * 3
+11	|+, -	|5 + 3 - 2
+2	|= (affectation)	|x = 2 + 2
+
+### 👑 Les parenthèses ( ) sont toujours prioritaires :
+
+```js
+2 + 3 * 4     // 14 (3*4 = 12 → 2+12)
+(2 + 3) * 4   // 20 (5 * 4)
+```
+
+## 📈📉 Préfixe et Postfixe (++ / --)
+
+### 🔢 Incrémentation / Décrémentation :
+
+- ++ ➕ ajoute 1
+
+- -- ➖ enlève 1
+
+### ✨ Préfixe : ++a ou --a
+
+➡️ Ajoute/soustrait puis retourne la nouvelle valeur
+
+let a = 1;
+let b = ++a;     // a = 2, b = 2
+
+### ⏪ Postfixe : a++ ou a--
+
+➡️ Retourne l’ancienne valeur, puis incrémente/décrémente
+
+let a = 1;
+let b = a++;     // a = 2, b = 1
+
+### ✅ Résumé :
+
+| Forme	| Action	| Retourne |
+| --- | --- | --- |
+|++a	| Incrémente AVANT	| Nouvelle valeur |
+|a++	| Incrémente APRÈS	| Ancienne valeur |
+
+### 💡 Astuce : si tu n’utilises pas la valeur retournée, les deux sont équivalentes :
+
+```js
+i++;
+++i;
+// identiques si la valeur retournée n’est pas utilisée
+```
