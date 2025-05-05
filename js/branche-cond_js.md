@@ -114,4 +114,171 @@ if (year < 2015) {
 
 **👉 JavaScript vérifie les conditions dans l’ordre. Il s’arrête dès qu’une est vraie.**
 
-Tu peux enchaîner autant de else if que tu veux. Le else final est optionnel, mais souvent utile.
+Tu peux enchaîner autant de else if que tu veux. Le else final est optionnel, mais souvent utile. 
+
+## Opérateur ternaire ‘?’
+
+Parfois, nous devons attribuer une variable en fonction d’une condition.
+
+### Exemple :
+
+```js
+let accessAllowed;
+let age = prompt('How old are you?', '');
+
+if (age > 18) {
+  accessAllowed = true;
+} else {
+  accessAllowed = false;
+}
+
+alert(accessAllowed);
+```
+
+L’opérateur dit “ternaire” ou “point d’interrogation” nous permet de le faire plus rapidement et plus simplement.
+
+L’opérateur est représenté par un point d’interrogation ?. Appelé aussi “ternaire” parce que l’opérateur a trois opérandes. C’est en fait le seul et unique opérateur en JavaScript qui en a autant.
+
+La syntaxe est :
+
+```js
+let result = condition ? value1 : value2
+```
+
+La condition est évaluée, si elle est vraie, alors value1 est retournée, sinon – value2.
+
+### Exemple :
+
+```js
+let accessAllowed = (age > 18) ? true : false;
+```
+
+Techniquement, nous pouvons omettre les parenthèses autour de age > 18. L’opérateur point d’interrogation a une faible précédence, il s’exécute donc après la comparaison >.
+
+Cet exemple fera la même chose que le précédent :
+
+```js
+// l'opérateur de comparaison "age > 18" s'exécute en premier quoiqu'il en soit
+// (pas besoin de l'envelopper entre parenthèses)
+let accessAllowed = age > 18 ? true : false;
+```
+
+Mais les parenthèses rendent le code plus lisible, il est donc recommandé de les utiliser.
+
+### Multiple ‘?’
+
+Une séquence d’opérateurs point d’interrogation ? permettent de renvoyer une valeur qui dépend de plusieurs conditions.
+
+### Exemple :
+
+```js
+let age = prompt('age?', 18);
+
+let message = (age < 3) ? 'Hi, baby!' :
+  (age < 18) ? 'Hello!' :
+  (age < 100) ? 'Greetings!' :
+  'What an unusual age!';
+
+alert( message );
+```
+
+Il peut être difficile au début de comprendre ce qui se passe. Mais après un examen plus approfondi, nous constatons que ce n’est qu’une séquence de tests ordinaire.
+
+- Le premier point d’interrogation vérifie si age < 3.
+
+- Si vrai – retourne 'Hi, baby!', Sinon, il continue avec l’expression après les deux points “:” suivants et vérifie si age < 18.
+
+- Si vrai – retourne 'Hello!', Sinon, il continue avec l’expression après les deux points “:” suivants et vérifie si age < 100.
+
+- Si vrai – retourne 'Greetings!', Sinon, l’expression continue après les derniers deux-points et retourne 'What an unusual age!'.
+
+La même logique utilisant if..else :
+
+```js
+if (age < 3) {
+  message = 'Hi, baby!';
+} else if (age < 18) {
+  message = 'Hello!';
+} else if (age < 100) {
+  message = 'Greetings!';
+} else {
+  message = 'What an unusual age!';
+}
+```
+
+## 🚫 Utilisation non recommandée du ?
+
+🔍 Parfois, on voit le point d’interrogation ? utilisé pour exécuter du code selon une condition, comme s’il remplaçait un if.
+
+### ❌ Exemple :
+
+```js
+let company = prompt('Quelle entreprise a créé JavaScript ?', '');
+
+(company == 'Netscape') ?
+  alert('✅ Bonne réponse !') :
+  alert('❌ Mauvaise réponse.');
+```
+
+➡️ Ici, on n’affecte aucune valeur à une variable, on utilise ? juste pour choisir quel alert() exécuter.
+🤔 Pourquoi ce n’est pas recommandé ?
+
+Même si ça fonctionne, ce n’est pas très lisible :
+
+- le code devient plus confus à lire
+
+- on gagne peu en longueur
+
+- on perd en clarté
+
+Nos yeux lisent plus facilement du code bien aligné verticalement comme :
+
+### ✅ Version recommandée avec if :
+
+```js
+let company = prompt('Quelle entreprise a créé JavaScript ?', '');
+
+if (company == 'Netscape') {
+  alert('✅ Bonne réponse !');
+} else {
+  alert('❌ Mauvaise réponse.');
+}
+```
+
+👍 Plus clair, plus facile à comprendre !
+🔧 Le if est fait pour exécuter du code, pas l'opérateur ?.
+
+### ✅ Résumé
+
+|👉 Cas d’usage|	✅ Recommandé ?	|💬 Pourquoi ?|
+|---|---|---|
+|Affecter une valeur	|✅ OUI	|Lisible et pratique|
+|Exécuter du code	|❌ NON	|Moins clair qu’un if classique|
+
+
+## Exemple pour mieux comprendre :
+
+```html
+<!DOCTYPE html>
+<html>
+
+<body>
+  <script>
+    'use strict';
+
+    let value = prompt('What is the "official" name of JavaScript?', '');
+
+    if (value == 'ECMAScript') {
+      alert('Right!');
+    } else {
+      alert("You don't know? ECMAScript!");
+    }
+  </script>
+
+
+</body>
+
+</html>
+```
+
+Une fenetre s'ouvre avec une question si on donne la bonne réponse on a "Right!" sinon "You don't know? ECMAScript!"
