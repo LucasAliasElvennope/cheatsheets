@@ -23,6 +23,10 @@ let year = prompt("En quelle année ECMAScript 2015 est sorti ?");
 if (year == 2015) {
   alert("Tu as raison ! 🎉");
 }
+
+else {
+  alert("Dommage ❌");
+}
 ```
 
 📌 Ici, year == 2015 est la condition.
