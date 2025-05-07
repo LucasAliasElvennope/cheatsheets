@@ -1,72 +1,82 @@
-# 📝 Cheat-Sheet : Les Fonctions en JavaScript
+# 🧩 Fonctions
 
-## 📦 Déclaration d'une fonction
+## 🔄 Pourquoi utiliser des fonctions ?
 
-### 1. Fonction simple
+Très souvent, on doit répéter une action à plusieurs endroits dans notre script.
+
+### 📌 Exemples :
+
+- Afficher un message quand un visiteur se connecte
+
+- Afficher un message quand un visiteur se déconnecte
+
+- Et peut-être à d'autres moments aussi...
+
+## ***👉 Au lieu de répéter le même code plusieurs fois, on crée une fonction !***
+
+## 🛠️ C’est quoi une fonction ?
+
+Une fonction est un bloc de code qui effectue une tâche précise.
+On peut l’appeler (utiliser) autant de fois qu’on veut, sans recopier le code !
+
+🧠 Les fonctions sont l’un des éléments clés d’un programme : elles le rendent modulaire, réutilisable et plus facile à lire.
+
+### 🔔 On connaît déjà des fonctions toutes faites :
+
+- alert(message) ➜ Affiche une alerte
+
+- prompt(message, default) ➜ Demande une saisie à l’utilisateur
+
+- confirm(question) ➜ Pose une question avec "OK" ou "Annuler"
+
+**✅ Ces fonctions sont intégrées dans JavaScript (on les appelle des fonctions natives ou intégrées).**
+
+---
+
+
+## 🧾 Déclaration de `fonction`
+
+### ✨ Comment créer une fonction ?
+
+On utilise le mot-clé function, suivi :
+
+- Du nom de la fonction 🏷️
+
+- De parenthèses () (avec ou sans paramètres)
+
+- Et de { accolades } pour délimiter le corps de la fonction (le code à exécuter)
+
+## 🧱 Structure :
+
 ```js
-function maFonction() {
-  console.log("Hello !");
+function nomDeLaFonction(param1, param2, ..., paramN) {
+  // 💬 Code à exécuter (corps de la fonction)
 }
 ```
 
-### 2. Fonction avec paramètres
+### 👀 Exemple simple :
 
 ```js
-function saluer(prenom) {
-  console.log("Bonjour " + prenom + "!");
+function showMessage() {
+  alert('Hello everyone!');
 }
 ```
 
-### 🧮 Appeler une fonction
+➡️ Ici, showMessage est le nom de la fonction. Elle ne prend aucun paramètre et affiche une alerte.
+
+### ***🧑‍💻 Comment l'utiliser ?***
+
+Il suffit d’appeler la fonction par son nom, suivi de () :
 
 ```js
-maFonction();  // Appel de la fonction
-saluer("Alice");  // Affiche "Bonjour Alice!"
+showMessage();
+showMessage();
 ```
 
-### 🧩 Retourner une valeur
+👉 Ce code va afficher deux fois une alerte avec "Hello everyone!", car on appelle la fonction deux fois ✅
 
-```js
-function addition(a, b) {
-  return a + b;
-}
+### 🎯 À quoi ça sert ?
 
+💡 L’un des grands avantages des fonctions est d’éviter la répétition de code (DRY = Don't Repeat Yourself).
 
-let resultat = addition(3, 5);  // retourne 8
-console.log(resultat);  // Affiche 8
-```
-
-### 🛠️ Fonction sans valeur de retour
-
-```js
-function afficherMessage() {
-  console.log("Message affiché !");
-}
-
-afficherMessage();  // Affiche "Message affiché !"
-```
-
-###🧭 Exemple avec un bouton
-
-```html
-<button onclick="changerMessage()">Cliquez-moi!</button>
-<p id="message"></p>
-
-<script>
-  function changerMessage() {
-    document.getElementById("message").textContent = "Vous avez cliqué sur le bouton!";
-  }
-</script>
-```
-
-### 📚 Résumé rapide :
-
-- Déclaration : function maFonction() { ... }
-
-- Appel : maFonction();
-
-- Retour : return valeur;
-
-- Paramètre : function saluer(nom) { ... }
-
-- Sans retour : console.log();
+**✔️ Si on veut changer le message plus tard, il suffit de le modifier à un seul endroit : dans la fonction.**
