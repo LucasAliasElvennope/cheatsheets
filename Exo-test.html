@@ -7,13 +7,21 @@
 </head>
 <body>
   <script>
-let i = 1;
-
-while (i <= 10) {
-  console.log(i);
-  i++;
+function ask(question, yes, no) {
+  if (confirm(question)) yes();
+  else no();
 }
 
+function showOk() {
+  alert( "You agreed." );
+}
+
+function showCancel() {
+  alert( "You canceled the execution." );
+}
+
+// utilisation: les fonctions showOk, showCancel sont transmises en tant qu'arguments à ask
+ask("Do you agree?", showOk, showCancel);
   </script>
 
 </body>
