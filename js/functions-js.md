@@ -302,3 +302,61 @@ function showMessage(from, text = anotherFunction()) {
 |Argument explicitement égal à undefined|Prend la valeur par défaut|
 |Argument fourni|Prend la valeur fournie|
 |Expression complexe (ex. fonction)|S'évalue uniquement si nécessaire|
+
+--- 
+
+### ⚙️ Paramètres par défaut alternatifs
+
+📍 Vérification manuelle des paramètres
+
+Parfois, on peut vérifier et définir une valeur par défaut au moment de l'exécution de la fonction, plutôt qu'à la déclaration de la fonction.
+
+### 👀 Exemple avec comparaison à undefined :
+
+```js
+function showMessage(text) {
+  if (text === undefined) {  // Vérifie si le paramètre est manquant
+    text = 'empty message';
+  }
+
+  alert(text); // Affiche : empty message si `text` est omis
+}
+
+showMessage(); // empty message
+```
+
+🔹 Si text n'est pas passé, il devient "empty message".
+🔹 Si text est fourni, il prend la valeur fournie.
+
+### 🔧 Utilisation de l'opérateur || :
+
+On peut aussi utiliser l'opérateur || pour attribuer une valeur par défaut si un paramètre est falsy (comme undefined, null, 0, false, etc.).
+
+```js
+function showMessage(text) {
+  text = text || 'empty';  // Si `text` est falsy (undefined, null, 0...), on attribue 'empty'
+  alert(text);
+}
+
+showMessage(); // empty
+```
+
+***🧠 Attention : 0, false, NaN et "" (chaîne vide) sont des valeurs falsy, donc seront aussi remplacées par la valeur par défaut ici ('empty').***
+
+### 🚀 Utilisation de l'opérateur de coalescence des nuls ?? (meilleure solution) :
+
+L’opérateur de coalescence des nuls ?? est une meilleure option quand on souhaite vérifier uniquement null ou undefined et ne pas affecter les autres valeurs fausses comme 0 ou false.
+
+```js
+function showCount(count) {
+  alert(count ?? "unknown");  // Si count est `null` ou `undefined`, il affiche "unknown"
+}
+
+showCount(0);        // Affiche : 0
+showCount(null);     // Affiche : unknown
+showCount();        // Affiche : unknown
+
+🔹 Ici, 0 est considéré comme une valeur valide, donc count = 0 s'affichera correctement.
+🔹 Si count est null ou undefined, alors "unknown" sera affiché.
+
+---
