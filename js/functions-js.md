@@ -201,3 +201,104 @@ Elle est visible partout dans le code, même à l’intérieur des fonctions (sa
 - Les globales ne servent qu’à stocker des infos partagées dans tout le programme (ex. : configuration, état utilisateur…)
 
 ---
+
+## 📦 Arguments
+
+### 📌 Définition :
+
+Nous pouvons transmettre des données arbitraires à des fonctions à l’aide de paramètres.
+
+Dans l’exemple ci-dessous, la fonction a deux paramètres: from et text.
+
+```js
+function showMessage(from, text) { // arguments : from, text
+  alert(from + ': ' + text);
+}
+
+showMessage('Ann', 'Hello!'); // Ann: Hello! (*)
+showMessage('Ann', "What's up?"); // Ann: What's up? (**)
+```
+
+➡️ Ces valeurs sont copiées dans les variables locales from et text, puis utilisées dans la fonction.
+
+- '`Ann`' est transmis à `from`
+- '`Hello`!' ou "`What's up`?" est transmis à `text`
+
+### 🧠 Résumé :
+
+|🧩 Terme|📌 Rôle|🧠 Exemple|
+|---|---|---|
+|Paramètre|Variable locale dans la fonction|from, text|
+|Argument|Valeur transmise lors de l’appel|'Ann', 'Hello!'|
+
+Lorsque la fonction est appelée dans les lignes (*) et (**), les valeurs données sont copiées dans les variables locales from et text. Ensuite, la fonction les utilise.
+
+---
+
+## 🧙‍♂️ Valeurs par défaut des paramètres
+
+### ***🧨 Problème :***
+
+Quand une fonction est appelée sans certains arguments, les paramètres non fournis deviennent undefined.
+
+### 👀 Exemple :
+
+```js
+function showMessage(from, text) {
+  alert(from + ': ' + text);
+}
+
+showMessage("Ann"); // Affiche : Ann: undefined ❗
+```
+
+### 🧠 Ici :
+
+```js
+from = "Ann"
+text = undefined car pas transmis
+```
+---
+
+## 🧑‍💻 Valeurs par défaut des paramètres
+
+### ***📍 Définition :***
+
+On peut spécifier une valeur par défaut pour un paramètre, qui sera utilisée si l'argument est omis lors de l’appel de la fonction.
+Cela permet d'éviter que le paramètre devienne undefined si aucun argument n'est fourni.
+
+### ***👀 Exemple avec valeur par défaut :***
+
+```js
+function showMessage(from, text = "no text given") {
+  alert(from + ": " + text);
+}
+
+showMessage("Ann"); // Affiche : Ann: no text given
+```
+
+- 🔹 Si `text` n'est pas passé, il prend la valeur `"no text given"` par défaut.
+- 🔹 Sinon, la valeur transmise à `text` sera utilisée.
+
+La valeur par défaut saute également si le paramètre existe, mais est strictement égal à `undefined`, comme ceci :
+
+```js
+showMessage("Ann", undefined); // Ann: no text given
+```
+
+Ici,  `"no text given"` est une chaîne de caractères, mais il peut s’agir d’une expression plus complexe, qui n’est évaluée et affectée que si le paramètre est manquant. Donc, cela est également possible :
+
+```js
+function showMessage(from, text = anotherFunction()) {
+  // anotherFunction() est exécuté uniquement si aucun texte n'est fourni
+  // son résultat devient la valeur de text
+}
+```
+
+### 🔧 Résumé :
+
+|📌 Situation|📋 Résultat|
+|---|---|
+|Argument ommis|Prend la valeur par défaut|
+|Argument explicitement égal à undefined|Prend la valeur par défaut|
+|Argument fourni|Prend la valeur fournie|
+|Expression complexe (ex. fonction)|S'évalue uniquement si nécessaire|
