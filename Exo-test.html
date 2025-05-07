@@ -7,25 +7,16 @@
 </head>
 <body>
   <script>
-let age = prompt("Quel est votre age ?", 18);
-
-// déclarer conditionnellement une fonction
-if (age < 18) {
-
-  function welcome() {
-    alert("Hello!");
-  }
-
-} else {
-
-  function welcome() {
-    alert("Greetings!");
-  }
-
+function ask(question, yes, no) {
+  if (confirm(question)) yes();
+  else no();
 }
 
-// ...l'utiliser plus tard
-welcome(); // Error: welcome is not defined
+ask(
+  "Do you agree?",
+  () => alert("You agreed."),
+  () => alert("You canceled the execution.")
+);
   </script>
 
 </body>
