@@ -505,3 +505,160 @@ alert( doNothing() === undefined ); // true
 
 🔹 return; et return undefined sont identiques.
 
+---
+
+## 📝 Nommer une fonction
+
+### 🤔 Pourquoi c’est important ?
+
+Le nom d’une fonction doit être clair, précis et décrire l’action qu’elle effectue.
+
+**💡 L’objectif : comprendre le rôle de la fonction rien qu’en lisant son nom !**
+
+### ✅ Bonnes pratiques :
+
+- 🟢 Utiliser un verbe → Une fonction fait une action, donc commence par un verbe clair.
+
+- 🟢 Sois précis → Le nom doit résumer le rôle exact de la fonction.
+
+- 🟢 Adopter un préfixe cohérent → Cela facilite la lecture du code et le travail en équipe.
+
+### 🔤 Préfixes recommandés et leurs rôles :
+
+| 🔤 Préfixe	|📌 Action attendue|
+|---|---|
+|show...	|Affiche quelque chose à l’utilisateur 🖥️|
+|get...	|Récupère une valeur et la renvoie 📥|
+|calc...	|Calcule une valeur et la renvoie ➗|
+|create...	|Crée un objet ou un élément 🧱|
+|check...	|Vérifie une condition, renvoie true/false ✅❌|
+
+### 📚 Exemples concrets :
+
+```js
+showMessage()        // Affiche un message
+getAge()             // Récupère l’âge
+calcSum(a, b)        // Calcule la somme de deux nombres
+createForm()         // Crée un formulaire (et le retourne)
+checkPermission()    // Vérifie une autorisation (true/false)
+```
+
+### 🎯 Résumé :
+
+🔹 ✔️ Utilise des verbes clairs
+
+🔹 ✔️ Sois cohérent dans le nommage
+
+🔹 ✔️ Utilise des préfixes logiques pour décrire le comportement de la fonction
+
+--- 
+
+## 🧩 Fonctions == Commentaires vivants
+
+🛠️ Une fonction bien écrite sert à décomposer le code, le rendre plus lisible, testable et débogable.
+
+### 🎯 Règle d’or :
+
+🔹 Une fonction = une seule tâche précise
+
+🔹 Si la tâche est trop grosse ➜ découpe-la en fonctions plus petites.
+
+💬 Chaque fonction bien nommée agit comme un commentaire auto-explicite.
+
+📊 Exemple : showPrimes(n)
+
+### ❌ Version complexe avec un label :
+
+```js
+function showPrimes(n) {
+  nextPrime: for (let i = 2; i < n; i++) {
+    for (let j = 2; j < i; j++) {
+      if (i % j == 0) continue nextPrime;
+    }
+    alert(i); // nombre premier
+  }
+}
+```
+
+🧠 Difficile à lire à cause du label et des boucles imbriquées.
+
+✅ Version claire avec une fonction :
+
+```js
+function showPrimes(n) {
+  for (let i = 2; i < n; i++) {
+    if (!isPrime(i)) continue;
+    alert(i); // nombre premier
+  }
+}
+
+function isPrime(n) {
+  for (let i = 2; i < n; i++) {
+    if (n % i == 0) return false;
+  }
+  return true;
+}
+```
+
+🟢 Beaucoup plus lisible grâce à isPrime(n) qui explique ce qu’elle fait par son nom !
+📌 On comprend directement : "Si ce n’est pas un nombre premier, on saute."
+
+### 🧠 À retenir :
+
+✅ Créer une fonction même si elle est utilisée une seule fois, ça :
+
+- rend le code plus propre 🧼
+
+- facilite la relecture 👀
+
+- documente l’intention du code 📖
+
+---
+
+## Conclusion
+
+### 🛠️ Déclaration d'une fonction
+
+```js
+function nom(param1, param2, ...) {
+  // code
+}
+```
+
+### 🧾 Ce qu’il faut retenir :
+
+✅ Les paramètres sont copiés dans des variables locales à la fonction.
+
+🚫 Les variables locales ne sont pas accessibles à l’extérieur de la fonction.
+
+🔁 Une fonction peut renvoyer une valeur avec return.
+
+→ Sinon, elle renvoie undefined.
+
+### 🌱 Bonnes pratiques
+
+**📌 Préfère :**
+
+- ➕ Utiliser des paramètres et travailler localement
+
+- 🚫 Éviter les effets de bord (modifier des variables externes)
+
+🎯 Une fonction claire ➜ entrée (paramètres) → traitement → sortie (return)
+
+🎯 Une fonction bien faite = facile à lire, tester et réutiliser 🔁
+
+🏷️ Nommage des fonctions
+
+🗣️ Une fonction est une action, donc son nom est généralement un verbe.
+
+📚 Préfixes recommandés :
+
+|Préfixe	|Signification|
+|---|---|
+|get...	|🔄 Récupère une valeur|
+|show...	|👁️ Affiche quelque chose|
+|calc...	|➕ Calcule une valeur|
+|create...	|🧱 Crée un objet ou un élément|
+|check...	|✅ Vérifie une condition (true/false)|
+
+### ***🧠 Un bon nom ➜ décrit l’intention et évite les commentaires inutiles***
