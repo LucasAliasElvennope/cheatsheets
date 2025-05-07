@@ -355,8 +355,153 @@ function showCount(count) {
 showCount(0);        // Affiche : 0
 showCount(null);     // Affiche : unknown
 showCount();        // Affiche : unknown
+```
 
 🔹 Ici, 0 est considéré comme une valeur valide, donc count = 0 s'affichera correctement.
 🔹 Si count est null ou undefined, alors "unknown" sera affiché.
 
 ---
+
+
+## 🔁 Renvoyer une valeur depuis une fonction
+
+### 📍 Définition :
+
+Une fonction peut renvoyer une valeur au code appelant en utilisant la directive return. Cette valeur devient le résultat de l’appel de la fonction.
+
+### 👀 Exemple simple avec return :
+
+```js
+function sum(a, b) {
+  return a + b;  // La fonction renvoie la somme de a et b
+}
+
+let result = sum(1, 2);  // La fonction sum est appelée avec 1 et 2
+alert(result);  // Affiche : 3
+```
+
+🔹 Lorsque la fonction est appelée, les paramètres a et b sont additionnés et la valeur du résultat est renvoyée via return.
+🔹 result reçoit cette valeur et l'affiche via alert().
+
+### 🚀 Explication du comportement du return :
+
+- Quand return est exécuté, l'exécution de la fonction s'arrête immédiatement.
+
+- La valeur après return devient le résultat de la fonction.
+
+- Si aucune valeur n'est fournie après return, la fonction renverra undefined.
+
+
+## 🔁 Plusieurs occurrences de return dans une fonction
+
+### 📍 Définition :
+
+Il est possible d’avoir plusieurs return dans une fonction. Cela permet de renvoyer des valeurs à différents points de la fonction, selon des conditions spécifiques.
+
+### 👀 Exemple avec plusieurs return :
+
+```js
+function checkAge(age) {
+  if (age >= 18) {
+    return true;  // Si l'âge est supérieur ou égal à 18, retourne true
+  } else {
+    return confirm('Do you have permission from your parents?');  // Sinon, demande la permission des parents
+  }
+}
+
+let age = prompt('How old are you?', 18);
+
+if (checkAge(age)) {
+  alert('Access granted');  // Affiche si l'âge est valide ou si la permission est donnée
+} else {
+  alert('Access denied');  // Affiche si l'âge est inférieur à 18 et pas de permission
+}
+```
+
+### 🔹 La fonction checkAge utilise deux return :
+
+🔹 Si l'âge est supérieur ou égal à 18, elle retourne true.
+
+🔹 Sinon, elle demande si l'utilisateur a la permission de ses parents via confirm() et renvoie le résultat de cette confirmation (true ou false).
+
+**🔹 Dans le code appelant, si checkAge(age) renvoie true, l'accès est accordé, sinon il est refusé.**
+
+--- 
+
+## 🚫 Return sans valeur pour arrêter l'exécution
+
+### 📍 Définition :
+
+Lorsqu'un return est utilisé sans valeur dans une fonction, il arrête immédiatement l'exécution de la fonction et renvoie undefined.
+
+Cela est utile lorsque tu veux mettre fin à l'exécution de la fonction avant qu'elle ne fasse quelque chose d'autre, en fonction de certaines conditions.
+
+### 👀 Exemple avec return sans valeur :
+
+```js
+function showMovie(age) {
+  if (!checkAge(age)) {  // Si checkAge retourne false
+    return;  // Arrête l'exécution de showMovie et renvoie undefined
+  }
+
+  alert("Showing you the movie");  // (*) Cette alerte ne s'affichera pas si checkAge(age) retourne false
+  // ...
+}
+```
+
+### 🔹 Explication :
+
+🔹 Si checkAge(age) retourne false, la fonction showMovie s'arrête immédiatement grâce à return.
+
+🔹 L'alerte "Showing you the movie" ne sera jamais affichée car l'exécution de la fonction a été arrêtée avant grâce au return.
+
+### 🚀 Résumé de l'utilisation de return sans valeur :
+
+🔹 return; dans une fonction arrête son exécution et renvoie undefined.
+
+🔹 Cela permet de prévenir l'exécution d'autres actions (comme des alertes, des calculs, etc.), en fonction de conditions spécifiques.
+
+---
+
+## 🌀 Return vide et undefined
+
+### 📍 Définition :
+
+Une fonction avec un return vide ou sans valeur renvoie undefined par défaut. Cela signifie que si la fonction ne renvoie rien, JavaScript renvoie automatiquement la valeur undefined.
+
+### 👀 Exemple de fonction avec return vide :
+
+```js
+function doNothing() { /* vide */ }
+
+alert( doNothing() === undefined ); // true
+```
+
+### 🔹 Explication :
+
+🔹 La fonction doNothing ne renvoie rien.
+
+🔹 Par défaut, cela revient à renvoyer undefined.
+
+### 🚀 Exemple de return sans valeur (identique à return undefined) :
+
+```js
+function doNothing() {
+  return;  // return vide, équivalent à return undefined
+}
+
+alert( doNothing() === undefined ); // true
+```
+
+### 🔹 Explication :
+
+🔹 return; sans valeur explicite dans la fonction est identique à return undefined.
+
+🔹 Cela signifie que si la fonction n'a pas de valeur après return, elle renverra undefined.
+
+### 🧠 Résumé :
+
+🔹 return vide renvoie undefined par défaut.
+
+🔹 return; et return undefined sont identiques.
+
