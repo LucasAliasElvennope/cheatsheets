@@ -1,83 +1,161 @@
-# 🧹 Garbage Collection en JavaScript — Version Débutant
 
-## Qu'est-ce que le Garbage Collection ?
+# 📚 Garbage Collection (GC) en JavaScript
 
-Quand tu crées des objets, des fonctions, ou des tableaux en JavaScript, tout ça prend de la mémoire 💾.
-Heureusement, tu n’as pas besoin de gérer cette mémoire toi-même : le moteur JavaScript s’en occupe automatiquement grâce à un système appelé Garbage Collector.
+## 1. C'est quoi le Garbage Collection (GC)?
 
-## 📌 L’idée principale : l’accessibilité
+Le Garbage Collection (GC) est un processus automatique dans JavaScript qui libère de la mémoire en supprimant les objets et données inaccessibles (c’est-à-dire ceux dont il n’existe plus de références actives).
 
-🔗 Le GC garde en mémoire tout ce qui est encore accessible.
-S’il ne trouve aucun moyen d’atteindre un objet => 🗑️ il le supprime de la mémoir
+## 2. Concept clé : Accessibilité
 
-## 🌱 Les « racines » (roots)
+Le GC se base sur l’accessibilité des objets en mémoire. Un objet est accessible si tu peux y accéder depuis une racine (root) par le biais d’une variable ou d’une référence.
 
-Ce sont les points de départ à partir desquels le moteur JS cherche ce qui est encore utilisé :
+## 3. Les racines (roots) 🌱
 
-- Les variables globales
+Les racines sont des points d'accès toujours accessibles par défaut :
 
-- Les fonctions en cours d’exécution
+- Variables globales : Déclarées en dehors des fonctions.
 
-- Les paramètres de fonctions actives
+- Variables locales : Déclarées dans une fonction en cours d’exécution.
 
-Etc.
+- Paramètres de fonction : Ceux passés à une fonction.
 
-➡️ Si un objet est relié directement ou indirectement à une racine, il est conservé.
+- Le call stack : La pile d’exécution actuelle.
 
-### 🧪 Exemple simple
+### Exemple :
 
-```js
-let user = { name: "Lucas" }; // 👉 accessible (grâce à la variable user)
-
-user = null; // ❌ plus aucune référence à l’objet => supprimé par le GC
+```javascript
+let globalVar = "Hello"; // racine
+function test() {
+  let localVar = "World"; // racine à l'intérieur de la fonction
+}
 ```
 
-### 🧩 Deux références
+## 4. Marquer les objets accessibles 🖊️
 
-```js
-let user = { name: "Lucas" };
-let admin = user;
+Lors du processus GC, les objets accessibles sont marqués (ou “peints” en vert) :
 
-user = null; // 👈 l’objet est encore accessible via admin ✅
-admin = null; // ❌ plus aucune référence => supprimé
+- Le GC commence par marquer les racines (variables, paramètres, etc.).
+
+- Ensuite, il suit toutes les références des objets accessibles et marque chaque objet rencontré.
+
+### Exemple :
+
+```javascript
+let obj1 = { a: 1 };
+let obj2 = { b: 2 };
+obj1.next = obj2; // obj1 référence obj2, donc obj2 est accessible
 ```
 
-### 💑 Objets liés entre eux
+// Si obj1 est une racine, obj2 devient aussi accessible.
 
-```js
-function marry(man, woman) {
-  woman.husband = man;
-  man.wife = woman;
+## 5. Le processus "Mark-and-Sweep" 🧹
 
-  return { father: man, mother: woman };
+- Mark (Marquer) : Le GC marque tous les objets accessibles.
+
+- Sweep (Balayer) : Tous les objets non marqués sont considérés comme inaccessibles et sont supprimés.
+
+### Exemple :
+
+```javascript
+let obj1 = { a: 1 };
+let obj2 = { b: 2 };
+obj1.next = obj2;
+
+obj1 = null; // Obj1 n'est plus accessible
+
+// Si obj2 n'est plus référencé, il sera supprimé du mémoire après "sweep"
+```
+
+## 6. Objets liés (Linked Objects) 🔗
+
+Les objets peuvent être liés entre eux. Un groupe d’objets interconnectés est vu comme un ensemble. Si tous les objets de l'ensemble deviennent inaccessibles, tout l’ensemble sera supprimé.
+
+### Exemple :
+
+```javascript
+function createCouple() {
+  let man = { name: "John" };
+  let woman = { name: "Ann" };
+  man.partner = woman; // Liens créés
+  woman.partner = man;
+  return { man, woman };
 }
 
-let family = marry({ name: "John" }, { name: "Ann" });
-
-Même si John et Ann se référencent l’un l’autre, ils peuvent être supprimés si la seule référence depuis les racines (ici family) est supprimée :
-
-family = null; // ❌ toute la "famille" devient inaccessible => supprimée
-
+let couple = createCouple();
+couple = null; // Tous les objets liés (man, woman) deviennent inaccessibles
 ```
 
-## 🔍 Comment ça marche techniquement ? (simplifié)
+## 7. Effet des références multiples 🔄
 
-L’algorithme utilisé s’appelle mark-and-sweep :
+Si un objet a plusieurs références, il restera accessible tant que l'une des références est toujours utilisée.
 
-- Il marque les objets accessibles depuis les racines.
+### Exemple :
 
-- Il suit leurs références pour marquer d’autres objets.
+```javascript
+let obj1 = { name: "Alice" };
+let obj2 = obj1; // obj2 et obj1 réfèrent au même objet
+obj1 = null; // L'objet est toujours accessible via obj2
+```
 
-- À la fin, tout ce qui n’est pas marqué est supprimé 🗑️.
+## 8. La collecte générationnelle 🧬
 
-Imagine un seau de peinture que tu verses sur les racines : tout ce que la peinture touche est conservé, le reste est effacé !
+Certains moteurs JavaScript utilisent la collecte générationnelle pour optimiser la gestion mémoire.
 
-## ⚠️ Ce qu’il faut retenir
+- Les nouveaux objets sont collectés plus fréquemment car ils ont une durée de vie courte.
 
-- ✅ Tu n’as rien à faire, le GC travaille automatiquement.
+- Les objets anciens (qui survivent aux premières collectes) sont moins souvent vérifiés.
 
-- ❌ Un objet non accessible depuis les racines est supprimé.
+Cela permet de réduire l'impact du GC sur les performances, en ne vérifiant pas constamment tous les objets.
 
-- 🔗 Même des objets connectés entre eux peuvent être supprimés s’ils ne sont plus reliés à une racine.
+## 9. La collecte incrémentielle 📉
 
-- 🧠 Bien comprendre ça t’aide à éviter les fuites de mémoire (quand des objets restent bloqués inutilement en mémoire).
+Pour éviter un ralentissement visible, le GC peut être incrémental. Cela signifie qu'il divise le travail de nettoyage en petites étapes, permettant à ton programme de continuer à tourner pendant que la mémoire est nettoyée en arrière-plan.
+
+## 10. La collecte en cas d’inactivité 💤
+
+Le GC s’exécute souvent quand ton processeur est inactif ou lorsqu’il n’est pas utilisé pour des tâches critiques. Cela permet de ne pas affecter les performances en plein exécution de ton code.
+
+## 11. Garbage Collection et les objets "lourds" ⚖️
+
+Les objets lourds (avec de nombreuses propriétés, tableaux imbriqués, etc.) ne sont pas automatiquement supprimés à cause de leur taille. Ce qui compte pour le GC, c’est s'ils sont accessibles ou non.
+Un objet lourd est généralement supprimé lorsqu'il devient inaccessible.
+
+## 12. Meilleures pratiques pour éviter des fuites mémoire 💡
+
+- Supprimer les références inutiles : Par exemple, mettre les objets à null quand tu n’en as plus besoin.
+
+obj = null; // libère la mémoire
+
+- Supprimer des clés d’objets ou des éléments de tableau si tu n'en as plus besoin :
+
+- delete obj.key;
+- arr.pop(); // retire un élément du tableau
+
+## 13. Exemple complet 📝
+
+```javascript
+function createCircle(radius) {
+  return { radius, area: Math.PI * radius * radius };
+}
+
+let circle1 = createCircle(10); // Crée un objet "circle1"
+let circle2 = createCircle(20); // Crée un objet "circle2"
+
+// On associe circle1 et circle2 dans un objet:
+let circles = { small: circle1, large: circle2 };
+
+// Maintenant, circle1 et circle2 sont accessibles via circles
+circle1 = null; // circle1 devient inaccessible mais circle2 est toujours là.
+
+circles = null; // Les deux objets "circle1" et "circle2" deviennent inaccessibles et seront supprimés
+```
+
+## 14. Conclusion et résumé 📌
+
+- Le GC supprime les objets qui ne sont plus accessibles.
+
+- Le processus utilise des racines pour déterminer ce qui reste en mémoire.
+
+- Les objets liés entre eux sont tous supprimés si l'ensemble devient inaccessible.
+
+- Le Garbage Collection fonctionne de manière automatique, et il est important de bien gérer les références pour éviter des fuites de mémoire.
