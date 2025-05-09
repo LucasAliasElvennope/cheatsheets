@@ -1,0 +1,33 @@
+<!--
+
+Minimum
+
+Write a function min that takes two arguments and returns their minimum.
+
+console.log(min(0, 10));
+// → 0
+console.log(min(0, -10));
+// → -10
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function min(a, b) { // créer la focntion min  avce a et b en arguments
+            if (a < b) { // si a ets plus petit que b 
+                return a; // retourne alors return a
+            } else {
+                return b;
+            }
+        }
+        console.log(min(0, 10)); //va afficher 0 dans la console
+        console.log(min(0, -10));// va afficher -10 dans la console
+    </script>
+</body>
+</html>
