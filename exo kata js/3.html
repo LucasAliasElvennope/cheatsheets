@@ -1,0 +1,45 @@
+<!--
+
+Chessboard
+
+Write a program that creates a string that represents an 8×8 grid, using newline characters to separate lines. At each position of the grid there is either a space or a "#" character. The characters should form a chessboard.
+
+Passing this string to console.log should show something like this:
+
+ # # # #
+# # # #
+ # # # #
+# # # #
+ # # # #
+# # # #
+ # # # #
+# # # #
+
+When you have a program that generates this pattern, define a binding size = 8 and change the program so that it works for any size, outputting a grid of the given width and height.
+
+-->
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3eme kata js</title>
+</head>
+<body>
+    <script>
+let taille = 8; // déclaration variable taille
+let damier = " "; // déclaration variable damier
+    for (let l = 0; l < taille; l++){ // boucle qui va se faire 8 fois car taille=8 ligne pour la ligne commence a 0 et s'arrete a 7 pour la huitième
+        for (let c= 0; c < taille; c++){ // boucle qui va se faire 8 fois car taille=8 colonne pour la colonne commence a 0 et s'arrete a 7 pour la huitième
+            if ((l+c) % 2 === 0){ // dabord on additionne ligne et colonne, on divise et on vois si le reste égale 0
+                damier += " ";// si oui on ajoute un espace "" 
+    } else {
+      damier += "#"; //si non on ajoute un #
+    }
+  } damier += "\n"; // quand c'ets fait on ajoute un retour a la ligne "\n"
+}
+console.log(damier); // on affiche le damier
+    </script>
+</body>
+</html>
