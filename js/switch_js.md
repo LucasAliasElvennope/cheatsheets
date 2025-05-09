@@ -192,21 +192,18 @@ switch (+a) { // +a convertit "1" en nombre => 1
 
 ### 📝 À retenir :
 
-- ✅ Tu peux utiliser des expressions dans les case, pas seulement des valeurs simples.
-
 - ***⚠ Sans break, tous les case suivants seront exécutés.***
 
 - Switch utilise une comparaison stricte (===), donc les types doivent aussi correspondre.
 
-
-## 🔁 Groupement de case :
+## 🔁 Groupement de case
 
 Quand plusieurs case doivent mener à la même action, tu peux les empiler les uns à la suite des autres, sans break intermédiaire, jusqu’à ce que le bloc de code partagé commence.
 
 ### ***📌 Exemple expliqué pas à pas :***
 
 ```js
-let a = 2 + 2;
+{{ ... }}
 
 switch (a) {
   case 4:
@@ -228,13 +225,13 @@ switch (a) {
 
 - a = 4, donc switch(4) :
 
-    - Il vérifie case 4 ✅ => exécute alert('Right!'), puis break : fin du switch.
+  - Il vérifie case 4 ✅ => exécute alert('Right!'), puis break : fin du switch.
 
 - Si a = 3 ou a = 5 :
 
-    - Il n’y a pas de code dans case 3, donc il continue à case 5 et exécute les deux alertes.
+  - Il n’y a pas de code dans case 3, donc il continue à case 5 et exécute les deux alertes.
 
-    - Ensuite break, donc fin.
+  - Ensuite break, donc fin.
 
 - Si a n’est ni 3, 4, ni 5, le bloc default est exécuté.
 

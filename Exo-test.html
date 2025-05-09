@@ -7,16 +7,21 @@
 </head>
 <body>
   <script>
-function ask(question, yes, no) {
-  if (confirm(question)) yes();
-  else no();
-}
+let fruit = 'banane';
 
-ask(
-  "Do you agree?",
-  () => alert("You agreed."),
-  () => alert("You canceled the execution.")
-);
+switch(fruit) {
+  case 'pomme':
+    console.log('C’est une pomme!');
+    break;
+  case 'banane':
+    console.log('C’est une banane!');
+    break;
+  case 'orange':
+    console.log('C’est une orange!');
+    break;
+  default:
+    console.log('Fruit inconnu');
+}
   </script>
 
 </body>
